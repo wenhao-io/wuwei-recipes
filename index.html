@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fffaf3">
+  <meta name="description" content="五周、35 餐和 90 道家常菜，按周浏览并离线查看每道菜的用量、火候和步骤。">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="五周家常菜">
+  <title>五周家常菜</title>
+  <link rel="manifest" href="./app.webmanifest">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="icon" type="image/png" href="./icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./recipe-data.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#menu">跳到菜单</a>
+  <header class="topbar">
+    <div class="container bar-inner">
+      <a class="brand" href="./" aria-label="五周家常菜首页">
+        <img src="./icon-192.png" alt="" width="36" height="36">
+        <span>五周家常菜</span>
+      </a>
+      <button type="button" class="status" id="install-button" aria-haspopup="dialog" title="离线与安装">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="offline-status" role="status">离线与安装</span>
+      </button>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-copy">
+        <h1 id="title">五周家常菜</h1>
+        <p class="intro">每天打开菜单，照着火候一步步做。</p>
+        <ul class="facts" aria-label="菜谱概要">
+          <li>2 人份</li>
+          <li>90 道菜</li>
+          <li>工作日约 30–50 分钟</li>
+        </ul>
+      </div>
+      <div class="hero-photo" aria-hidden="true"></div>
+    </section>
+
+    <div class="toolbar">
+      <form id="search-form" class="search" role="search">
+        <label for="search" class="sr-only">搜索菜名或食材</label>
+        <span class="magnifier" aria-hidden="true"></span>
+        <input type="search" id="search" placeholder="搜索菜名或食材" enterkeyhint="search" autocomplete="off">
+        <button type="button" class="clear" id="clear-search" aria-label="清空搜索" hidden>×</button>
+      </form>
+      <button type="button" class="guide" id="guide-button" aria-haspopup="dialog"><span aria-hidden="true">?</span> 火候指南</button>
+    </div>
+
+    <div id="menu">
+      <nav class="calendar" aria-label="选择周和星期">
+        <div class="week-tabs" id="week-tabs" role="group" aria-label="选择第几周"></div>
+        <div class="day-tabs" id="day-tabs" role="group" aria-label="选择星期"></div>
+      </nav>
+      <div class="content-grid">
+        <section class="daily" aria-labelledby="day-title">
+          <div class="day-header">
+            <div><p id="day-week" class="day-week"></p><h2 id="day-title"></h2></div>
+            <div class="day-meta" id="day-meta"></div>
+          </div>
+          <p id="cooking-order" class="order" hidden></p>
+          <div class="recipes" id="recipes"></div>
+        </section>
+        <aside class="overview" aria-labelledby="overview-title">
+          <h2 id="overview-title">本周菜单</h2>
+          <div id="overview"></div>
+        </aside>
+      </div>
+    </div>
+
+    <section id="results" aria-labelledby="results-title" hidden>
+      <h2 id="results-title">搜索结果</h2>
+      <p id="result-count" role="status"></p>
+      <div class="recipes" id="result-list"></div>
+    </section>
+    <noscript><p>请开启 JavaScript 后查看菜谱。</p></noscript>
+  </main>
+  <footer class="container footer">
+    <span>按 2 人份安排 · 周末四道菜</span>
+  </footer>
+
+  <dialog id="guide-dialog" aria-labelledby="guide-title">
+    <div class="dialog-head">
+      <h2 id="guide-title">火候和熟度怎么看</h2>
+      <form method="dialog"><button class="close" aria-label="关闭">×</button></form>
+    </div>
+    <div id="guide-content"></div>
+  </dialog>
+
+  <dialog id="install-dialog" aria-labelledby="install-title">
+    <div class="dialog-head">
+      <h2 id="install-title">在 iPhone 上安装</h2>
+      <form method="dialog"><button class="close" aria-label="关闭">×</button></form>
+    </div>
+    <ol class="install-steps">
+      <li>在 iPhone 的 <strong>Safari</strong> 中打开这个网址。</li>
+      <li>轻点<strong>共享</strong>，选择<strong>添加到主屏幕</strong>。</li>
+      <li>打开<strong>作为网页 App 打开</strong>，再轻点<strong>添加</strong>。</li>
+      <li>联网从主屏幕图标打开一次，等顶部显示<strong>可离线使用</strong>。之后可以开飞行模式试一下。</li>
+    </ol>
+    <p class="dialog-note" id="install-note">离线包包含五周菜单、全部 90 道菜和火候指南。</p>
+  </dialog>
+</body>
+</html>
